@@ -30,21 +30,7 @@ const sendHttpRequest = (method, url, data) => {
   return promise;
 };
 
-const estimate = () => {
-  let params = new URLSearchParams(document.location.search.substring(1));
-  let oid = parseInt(params.get("objectId"));
-  let token = params.get("token");
-  console.log(oid);
-  console.log(token);
-  
-  sendHttpRequest('GET', 'https://survey123.arcgis.com/api/featureReport/estimateCredits?featureLayerUrl=https://services.arcgis.com/V3rkP5g6N5bDtF74/ArcGIS/rest/services/Pursuits_2024/FeatureServer/0&queryParameters={"where": "objectId='+oid+'"}&templateItemId=91ad5602a0094532b0216ad75965c96f&token='+token).then(responseData => {
-	console.log(responseData['resultInfo'].cost);
-	//return responseData['resultInfo'].cost
-	document.getElementById("estimate_credits").innerHTML = "Estimated credit cost: " + responseData['resultInfo'].cost;
-	//return x.innerHTML = responseData['resultInfo'].cost;
-	});
-  
-};
+
 
 
 const createReport = () => {
@@ -72,22 +58,6 @@ const createReport = () => {
   
 };
 
-const checkJobStatus = (jobId, token) => {
-	sendHttpRequest('GET', 'https://survey123.arcgis.com/api/featureReport/jobs/' + jobId + '?token='+token).then(responseData => {
-		console.log(responseData);
-		document.getElementById("generate_report").innerHTML = responseData['jobStatus'];
-		if (responseData['jobStatus'] == 'esriJobExecuting') {
-			document.getElementById("generate_report").innerHTML = responseData['jobStatus'];
-			setTimeout(checkJobStatus(responseData['jobId'], token), 10000);			
-		} else if (responseData['jobStatus'] == 'esriJobSucceeded') {
-			console.log(responseData['resultInfo'].resultFiles[0].url);
-			// document.getElementById("generate_report").innerHTML = responseData['resultInfo'].resultFiles[0].url;
-			document.getElementById("generate_report").innerHTML = "Download Report Here";
-			document.getElementById("generate_report").href = responseData['resultInfo'].resultFiles[0].url;
-		}
-	});	
-};	
 
 
-estimateBtn.addEventListener('click', estimate);
 reportBtn.addEventListener('click', createReport);
