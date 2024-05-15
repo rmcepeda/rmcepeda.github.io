@@ -41,7 +41,7 @@ const createReport = () => {
 	console.log(token);
 	sendHttpRequest('POST', 'https://survey123.arcgis.com/api/featureReport/createReport/submitJob', {
 	featureLayerUrl: 'https://services.arcgis.com/V3rkP5g6N5bDtF74/ArcGIS/rest/services/Pursuits_2024/FeatureServer/0',
-	queryParameters: '{"objectIds":"' + oid + '","orderByFields":"||EditDate DESC, objectid ASC"}',
+	queryParameters: '{"objectIds":"' + oid + '","orderByFields":"||Pursuit_Na DESC, objectid ASC"}',
 	templateItemId: '91ad5602a0094532b0216ad75965c96f',
 	token: token,
 	surveyItemId: 'fe4821c6a69c404e8553aea514d1f2dc',
