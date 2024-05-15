@@ -58,7 +58,7 @@ const createReport = () => {
 	queryParameters: '{"objectIds":"' + oid + '","orderByFields":"||EditDate DESC, objectid ASC"}',
 	templateItemId: '91ad5602a0094532b0216ad75965c96f',
 	token: token,
-	//surveyItemId: 'fe4821c6a69c404e8553aea514d1f2dc',
+	surveyItemId: 'fe4821c6a69c404e8553aea514d1f2dc',
 	outputFormat: 'pdf'
 	})
 		.then(responseData => {
