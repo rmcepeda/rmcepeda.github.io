@@ -37,7 +37,7 @@ const estimate = () => {
   console.log(oid);
   console.log(token);
   
-  sendHttpRequest('GET', 'https://survey123.arcgis.com/api/featureReport/estimateCredits?featureLayerUrl=https://services9.arcgis.com/QqYTCcI9gte4fVq0/ArcGIS/rest/services/Water_Stations_editing/FeatureServer/0&queryParameters={"where": "objectId='+oid+'"}&templateItemId=746317007791465291b4a939cfc50638&token='+token).then(responseData => {
+  sendHttpRequest('GET', 'https://survey123.arcgis.com/api/featureReport/estimateCredits?featureLayerUrl=https://services.arcgis.com/V3rkP5g6N5bDtF74/ArcGIS/rest/services/Pursuits_2024/FeatureServer/0&queryParameters={"where": "objectId='+oid+'"}&templateItemId=099842611d7449668ebbbdff7028ef34&token='+token).then(responseData => {
 	console.log(responseData['resultInfo'].cost);
 	//return responseData['resultInfo'].cost
 	document.getElementById("estimate_credits").innerHTML = "Estimated credit cost: " + responseData['resultInfo'].cost;
@@ -54,11 +54,11 @@ const createReport = () => {
 	console.log(oid);
 	console.log(token);
 	sendHttpRequest('POST', 'https://survey123.arcgis.com/api/featureReport/createReport/submitJob', {
-	featureLayerUrl: 'https://services9.arcgis.com/QqYTCcI9gte4fVq0/ArcGIS/rest/services/Water_Stations_editing/FeatureServer/0',
+	featureLayerUrl: 'https://services.arcgis.com/V3rkP5g6N5bDtF74/ArcGIS/rest/services/Pursuits_2024/FeatureServer/0',
 	queryParameters: '{"objectIds":"' + oid + '","orderByFields":"||EditDate DESC, objectid ASC"}',
-	templateItemId: '746317007791465291b4a939cfc50638',
+	templateItemId: '099842611d7449668ebbbdff7028ef34',
 	token: token,
-	surveyItemId: 'e7709174ba48426c880e504e11319970',
+	surveyItemId: 'fe4821c6a69c404e8553aea514d1f2dc',
 	outputFormat: 'pdf'
 	})
 		.then(responseData => {
